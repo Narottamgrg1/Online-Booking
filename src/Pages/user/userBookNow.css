@@ -1,0 +1,279 @@
+/* Main container */
+.book-container {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    padding-bottom: 2rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Booking wrapper */
+.booking-wrapper {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Booking form */
+.booking-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 600px;
+    flex: 1;
+}
+
+.booking-form h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Form elements */
+.booking-form label {
+    display: block;
+    font-size: 1rem;
+    color: #475569;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.booking-form select,
+.booking-form input,
+.booking-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.booking-form select:focus,
+.booking-form input:focus,
+.booking-form textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Button styles */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.checkavailability,
+.check-challenge {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+}
+
+.checkavailability {
+    background-color: #007bff;
+    color: white;
+}
+
+.checkavailability:hover {
+    background-color: #0056b3;
+}
+
+.checkavailability:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+/* Challenge button */
+.check-challenge {
+    background-color: #7c3aed;
+    color: white;
+}
+
+.check-challenge.challenge-active {
+    background-color: #6d28d9;
+}
+
+.check-challenge:hover:not(:disabled) {
+    background-color: #5b21b6;
+}
+
+.check-challenge:disabled {
+    background-color: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* Time slots */
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.time-slot-button {
+    padding: 0.6rem;
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.time-slot-button:hover {
+    background-color: #e2e8f0;
+}
+
+.time-slot-button.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #4f46e5;
+}
+
+/* Challenge mode */
+.challenge-msg {
+    margin: 1rem 0;
+    color: #d97706;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.75rem;
+    background-color: #fffbeb;
+    border-radius: 6px;
+}
+
+.challenge-details-container textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Booking summary */
+.booking-summary-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 350px;
+    position: relative;
+    border-top: 4px solid #007bff;
+}
+
+.booking-summary-card h3 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.summary-field {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+    background-color: #f8fafc;
+    border-radius: 6px;
+}
+
+.summary-field p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.summary-field strong {
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.delete-checkbox {
+    transform: scale(1.2);
+    accent-color: #ef4444;
+    cursor: pointer;
+}
+
+/* Summary buttons */
+.summary-edit-btn,
+.summary-book-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.summary-edit-btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+.summary-edit-btn:hover {
+    background-color: #e2e8f0;
+}
+
+.summary-book-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.summary-book-btn:hover {
+    background-color: #0056b3;
+}
+
+.summary-book-btn:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .booking-wrapper {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .booking-form,
+    .booking-summary-card {
+        max-width: 100%;
+    }
+    
+    .time-slots {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.booking-form,
+.booking-summary-card {
+    animation: fadeIn 0.3s ease-out;
+}

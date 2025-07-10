@@ -1,0 +1,62 @@
+.review-popup-container {
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-header h2 {
+  font-size: 24px;
+}
+
+.close-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.review-form {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.submit-btn {
+  align-self: flex-start;
+  background-color: #008cba;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.review-list {
+  margin-top: 20px;
+}
+
+.review-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.review-actions button {
+  margin-right: 10px;
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+}

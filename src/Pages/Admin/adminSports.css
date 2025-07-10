@@ -1,0 +1,94 @@
+.sports-table-container {
+    padding: 30px;
+    margin-left: 210px;
+    margin-top: 60px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sports-table-container h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.sports-table-container p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+}
+
+.sports-table-container button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.sports-table-container button:hover {
+    background-color: #0056b3;
+}
+
+.sports-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.sports-table th, .sports-table td {
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.sports-table thead {
+    background-color: #f5f5f5;
+}
+
+.sports-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.sports-table tbody tr:hover {
+    background-color: #f0f8ff;
+}
+
+.delete-footer {
+    margin-top: 20px;
+}
+
+.confirm-delete-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.confirm-delete-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .sports-table-container {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .sports-table th, .sports-table td {
+        padding: 10px;
+    }
+
+    .sports-table-container button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
