@@ -1,0 +1,118 @@
+/* Main container */
+.main-managerloyalty-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Content Container */
+.managerloyalty-content {
+    flex-grow: 1;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    height: 100vh;
+}
+
+.loyalty-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.loyalty-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background: #fff;
+}
+
+.card-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.status-active {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-inactive {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.stamp-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.stamp-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 20px;
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+.stamp-circle.filled {
+    background: #ff6b6b;
+    color: white;
+    border: 2px solid #ff6b6b;
+    transform: scale(1.05);
+}
+
+.progress-text {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #555;
+}
+
+.card-footer {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    color: #666;
+}
+
+.card-footer p {
+    margin: 5px 0;
+}
+
+.card-meta {
+    margin: 10px 0;
+    font-size: 13px;
+    color: #666;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+
+.card-meta p {
+    margin: 3px 0;
+}
