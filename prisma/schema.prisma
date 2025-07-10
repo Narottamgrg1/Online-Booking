@@ -1,0 +1,333 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String                     @id @default(auto()) @map("_id") @db.ObjectId
+  name                String
+  Phone               String
+  email               String                     @unique
+  password            String
+  role                String
+  isVerified          Boolean                    @default(false)
+  emailToken          String?
+  emailTokenExpires   DateTime?
+  avatar              String?
+  resetToken       String? 
+  resetTokenExpiry DateTime?
+
+  venue               Venue?
+  courts              VenueCourt[]
+  details             VenueDetail?
+  book                CourtBook[]
+  reviewAndRating     VenueReviewAndRating[]
+  registeredTeam      RegisteredTournamentTeam[]
+  challengesInitiated Challenge[]                @relation("FirstUser")
+  challengesReceived  Challenge[]                @relation("SecondUser")
+  createdAt           DateTime                   @default(now())
+  loyalty             loyalty[]
+}
+
+model Sports {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  name        String       @unique
+  courts      VenueCourt[] // A sport can have multiple courts
+  tournaments Tournament[]
+}
+
+model Venue {
+  id              String                 @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  sports          String[]
+  imgs            String[]
+  address         String
+  city            String
+  latitude        Float
+  longitude       Float
+  loyaltyCard Boolean?
+  loyaltyPoint Int?
+  userId          String                 @unique @db.ObjectId
+  user            User                   @relation(fields: [userId], references: [id])
+  courts          VenueCourt[]
+  book            CourtBook[]
+  availability    Availability[]
+  tournament      Tournament[]
+  reviewAndRating VenueReviewAndRating[]
+  challenges      Challenge[]
+  createdAt       DateTime               @default(now())
+  details         VenueDetail?
+  status          String                 @default("pending") // Ensure default value is set
+  loyalty         loyalty[]
+}
+
+model VenueCourt {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  title          String
+  price_per_hour Int
+  status         String
+  sportname      String
+
+  // Reference to Sport
+  sportId String @db.ObjectId
+  sport   Sports @relation(fields: [sportId], references: [id])
+
+  // Reference to Venue
+  venueId String @db.ObjectId
+  venue   Venue  @relation(fields: [venueId], references: [id])
+
+  // Reference to User (Owner)
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+
+  book CourtBook[]
+
+  challenges Challenge[]
+
+  availability Availability[]
+
+  tournament Tournament[]
+
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @updatedAt
+
+}
+
+model VenueDetail {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  openinghours String[]
+  venuepolicy  String
+  amenities    String[]
+
+  // Reference to Venue
+  venueId String @unique @db.ObjectId
+  venue   Venue  @relation(fields: [venueId], references: [id])
+
+  // Reference to User (Owner)
+  userId String @unique @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+enum BookingStatus {
+  PENDING // Waiting for approval or confirmation
+  CONFIRMED // Successfully booked
+  CANCELLED // Canceled by user or admin
+  COMPLETED // Booking has ended successfully
+}
+
+model Payment {
+  id                      String         @id @default(auto()) @map("_id") @db.ObjectId
+  transactionId           String         @unique
+  pidx                    String         @unique
+  bookingId               String         @unique @db.ObjectId // Add @unique here to enforce one payment per booking
+  booking                 CourtBook      @relation(fields: [bookingId], references: [id])
+  amount                  Int
+  dataFromVerificationReq Json?
+  apiQueryFromUser        Json?
+  paymentGateway          PaymentGateway
+  status                  PaymentStatus  @default(PENDING)
+  paymentDate             DateTime       @default(now())
+  createdAt               DateTime       @default(now())
+  updatedAt               DateTime       @updatedAt
+}
+
+enum PaymentStatus {
+  success
+  PENDING
+  failed
+}
+
+enum PaymentGateway {
+  PENDING
+  khalti
+  esewa
+  connectIps
+  cash
+  Redeemtion
+}
+
+model CourtBook {
+  id               String          @id @default(auto()) @map("_id") @db.ObjectId
+  date             DateTime
+  starting_hour    Int
+  ending_hour      Int
+  duration         Int
+  status           BookingStatus
+  price            Float?
+  paymentStatus    PaymentStatus?  @default(PENDING)
+  paymentDate      DateTime? // Allow null, if necessary
+  paymentMethod    PaymentGateway? @default(PENDING) // Store the payment method
+  userId           String          @db.ObjectId
+  user             User            @relation(fields: [userId], references: [id])
+  venueId          String          @db.ObjectId
+  venue            Venue           @relation(fields: [venueId], references: [id])
+  courtId          String          @db.ObjectId
+  court            VenueCourt      @relation(fields: [courtId], references: [id])
+  payment          Payment?
+  availabilities   Availability[]
+  challenges       Challenge[]
+  bookedSlots      Json?
+  notes            String?
+  verificationCode String? // optional 4-digit code
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Availability {
+  id      String     @id @default(auto()) @map("_id") @db.ObjectId
+  courtId String     @db.ObjectId
+  court   VenueCourt @relation(fields: [courtId], references: [id], onDelete: Cascade)
+
+  venueId String     @db.ObjectId
+  venue   Venue      @relation(fields: [venueId], references: [id])
+
+  date      DateTime
+  startTime Int
+  endTime   Int
+
+  bookingId String?    @db.ObjectId
+  booking   CourtBook? @relation(fields: [bookingId], references: [id])
+
+  isAvailable Boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([courtId, date, startTime, endTime])
+}
+
+
+model Tournament {
+  id             String                     @id @default(auto()) @map("_id") @db.ObjectId
+  venueId        String                     @db.ObjectId // Reference to the Venue
+  venue          Venue                      @relation(fields: [venueId], references: [id])
+  courtId        String?                    @db.ObjectId
+  court          VenueCourt?                @relation(fields: [courtId], references: [id])
+  sportsId       String                     @db.ObjectId // ✅ foreign key to Sports
+  sports         Sports                     @relation(fields: [sportsId], references: [id])
+  entryFee       Float
+  phone          String
+  tournamentName String
+  organizer      String
+  Details        String
+  registerEnds   DateTime
+  gameDay        DateTime
+  gameEndDay     DateTime?
+  totalTeams     Int?
+  registeredTeam RegisteredTournamentTeam[]
+  isAvailable    Boolean
+  createdAt      DateTime                   @default(now())
+}
+
+enum RegistrationStatus {
+  PENDING // Waiting for approval or confirmation
+  CONFIRMED // Successfully booked
+  CANCELLED // Canceled by user or admin
+  COMPLETED // Booking has ended successfully
+}
+
+model RegisteredTournamentTeam {
+  id                 String             @id @default(auto()) @map("_id") @db.ObjectId
+  tournamentId       String?            @db.ObjectId
+  tournament         Tournament?        @relation(fields: [tournamentId], references: [id])
+  teamName           String
+  phone              String
+  paymentStatus      PaymentStatus?     @default(PENDING)
+  paymentGateway     PaymentGateway
+  registrationStatus RegistrationStatus @default(PENDING)
+  tournamentPayment  TournamentPayment?
+  userId             String             @db.ObjectId
+  user               User               @relation(fields: [userId], references: [id])
+  createdAt          DateTime           @default(now())
+
+  @@unique([tournamentId, teamName])
+}
+
+model TournamentPayment {
+  id                      String                   @id @default(auto()) @map("_id") @db.ObjectId
+  transactionId           String                   @unique
+  pidx                    String                   @unique
+  registeredTeamId        String                   @unique @db.ObjectId // Add @unique here to enforce one payment per booking
+  registeredTeam          RegisteredTournamentTeam @relation(fields: [registeredTeamId], references: [id])
+  amount                  Int
+  dataFromVerificationReq Json?
+  apiQueryFromUser        Json?
+  paymentGateway          PaymentGateway
+  status                  PaymentStatus            @default(PENDING)
+  paymentDate             DateTime                 @default(now())
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+}
+
+model VenueReviewAndRating {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  venueId   String   @db.ObjectId
+  userId    String   @db.ObjectId
+  rating    Int // typically between 1 and 5
+  review    String? // optional written review
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations (assuming Venue and User models exist)
+  venue Venue @relation(fields: [venueId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+}
+
+enum ChallengeStatus {
+  open
+  accepted
+  completed
+  cancelled
+}
+
+model Challenge {
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  details         String
+  challengestatus ChallengeStatus @default(open)
+  venueId         String          @db.ObjectId
+  // sport        String
+  firstUserId     String          @db.ObjectId
+  secondUserId    String?         @db.ObjectId
+  bookId          String          @db.ObjectId
+  courtId         String          @db.ObjectId
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Optional relations (only if you have related models)
+  venue      Venue      @relation(fields: [venueId], references: [id])
+  firstUser  User       @relation("FirstUser", fields: [firstUserId], references: [id])
+  secondUser User?      @relation("SecondUser", fields: [secondUserId], references: [id])
+  booking    CourtBook  @relation(fields: [bookId], references: [id])
+  court      VenueCourt @relation(fields: [courtId], references: [id])
+
+  @@unique([bookId])
+}
+
+model loyalty {
+  id        String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String        @db.ObjectId
+  user      User          @relation(fields: [userId], references: [id])
+  venueId   String        @db.ObjectId
+  venue     Venue         @relation(fields: [venueId], references: [id])
+  points    Int
+  status    LoyaltyStatus
+  updatedAt DateTime      @updatedAt
+  createdAt DateTime      @default(now())
+
+  // @@unique([userId, venueId,status])
+} 
+
+enum LoyaltyStatus {
+  ACTIVE
+  REDEEMED
+}
