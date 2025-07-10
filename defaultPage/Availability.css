@@ -1,0 +1,93 @@
+.booking-container {
+    max-width: 500px; /* Adjusted width for better spacing */
+    margin: 50px auto; /* Center the component */
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
+    border-radius: 10px; /* More rounded corners */
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #e0e0e0; /* Add a subtle border */
+}
+
+h2 {
+    font-size: 20px; /* Larger title size for better readability */
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Dropdown Styling */
+.sport-dropdown, .court-dropdown {
+    width: 100%;
+    padding: 10px; /* Slightly larger padding */
+    font-size: 16px; /* Increased font size */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.sport-dropdown:focus, .court-dropdown:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #fff;
+}
+
+.sport-dropdown option, .court-dropdown option {
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Button Styling */
+.availability-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.availability-btn :hover {
+    background-color: #0056b3;
+}
+
+.availability-btn :disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+/* Calendar Container */
+.date-container {
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .booking-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .sport-dropdown, .court-dropdown {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}

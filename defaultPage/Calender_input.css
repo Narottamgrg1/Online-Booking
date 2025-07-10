@@ -1,0 +1,56 @@
+.calendar-container {
+    width: 350px; /* Set a fixed width */
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Reduces space between label and input */
+    margin-bottom: 12px;
+}
+
+.input-label {
+    font-size: 12px; /* Smaller font size */
+    font-weight: 500; /* Lighter than bold */
+    color: #444;
+}
+
+.input-field {
+    width: 140px; /* Smaller width */
+    padding: 6px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #007bff; /* Slightly more vibrant focus color */
+}
+
+.input-field::placeholder {
+    color: #bbb;
+}
+
+.calendar-toggle-btn {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 4px;
+    padding: 4px;
+    color: #444;
+}
+
+.calendar-toggle-btn:hover {
+    color: #007bff;
+}
+

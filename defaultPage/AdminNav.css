@@ -1,0 +1,109 @@
+.admin-top-nav {
+    width: 100%;
+    height: 60px;
+    background-color: #007bff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo h2 {
+    margin: 0;
+}
+
+.profile-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 65px;
+}
+
+.admin-profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+.profile-name {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.dropdown-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 150px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menu a {
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+/* .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+} */
+
+/* Side nav remains unchanged */
+.admin-side-nav {
+    width: 200px;
+    height: 100vh;
+    background-color: #007bff;
+    padding-top: 80px; /* adjusted for top nav */
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-side-nav a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.admin-side-nav a:hover {
+    background-color: #006bdd;
+}

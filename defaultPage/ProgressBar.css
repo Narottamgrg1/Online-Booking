@@ -1,0 +1,49 @@
+.progress-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    background-color: #f0f0f0;
+    gap: 50px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0 1rem;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: lightgray;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.label {
+    margin-left: 0.5rem;
+    font-size: 14px;
+}
+
+.line {
+    position: absolute;
+    right: -4.5rem;
+    width: 4rem;
+    height: 2px;
+    background-color: gray;
+}
+
+.step.active .circle {
+    background-color: #007bff; /* Blue for active step */
+}
+
+.step.active .label {
+    font-weight: bold;
+    color: #007bff;
+}

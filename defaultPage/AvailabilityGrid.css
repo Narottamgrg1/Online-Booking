@@ -1,0 +1,30 @@
+.availability-grid {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.time-slot {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.available {
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+
+.unavailable {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+

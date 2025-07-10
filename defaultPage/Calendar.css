@@ -1,0 +1,97 @@
+.react-calendar {
+    width: 100%; /* Make the calendar responsive */
+    max-width: 582px; /* Ensure it doesn't exceed the max width */
+    margin: 0 auto; /* Center align the calendar */
+    padding: 10px; /* Optional: Add padding for a better look */
+}
+
+
+/* Disable clicks on previous and next buttons */
+.react-calendar__navigation button {
+    pointer-events: none; /* Prevent clicking */
+    opacity: 0.6; /* Make them look slightly faded */
+    cursor: default; /* Change cursor to indicate non-clickable */
+}
+
+/* Restore default styling for today's date */
+.react-calendar__tile--now {
+    background-color: initial !important;
+    color: initial !important;
+}
+
+/* Custom hover effect for today's date */
+.react-calendar__tile--now:hover {
+    background-color: #e5e7eb !important; /* Set the desired hover background color */
+    color: initial !important; /* Keep the default text color */
+}
+
+/* Hide the side arrows (previous and next month buttons) */
+.react-calendar__navigation__arrow {
+    display: none;
+}
+
+/* Custom styling for weekend dates */
+.react-calendar__month-view__days__day--weekend {
+    background-color: initial !important;
+    color: initial !important;
+}
+
+.react-calendar__month-view__days__day--weekend:hover {
+    background-color: #e5e7eb !important;
+    color: initial !important;
+}
+
+.react-calendar__month-view__days__day--weekend:disabled {
+    background-color: #f0f0f0 !important;
+    color: #ababab !important;
+}
+
+/* Highlight selected date */
+.react-calendar__tile--active {
+    background: #006edc !important;
+    color: white !important;
+}
+
+/* Add custom margin/padding for the date container */
+.date-container {
+    margin-top: 20px;
+}
+
+/* Additional styling to handle the input field */
+.input-container {
+    margin-bottom: 10px;
+}
+
+.input-field input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Prevent clicking on abbr tags (tooltips) */
+abbr:where([title]) {
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+
+.calendar-toggle-btn {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 4px;
+    padding: 4px;
+    color: #444;
+}
+
+.calendar-toggle-btn:hover {
+    color: #007bff;
+}
+
+
+
+
